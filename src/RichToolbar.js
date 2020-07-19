@@ -128,7 +128,6 @@ export default class RichToolbar extends Component {
             case actions.heading5:
             case actions.heading6:
             case actions.setParagraph:
-            case actions.removeFormat:
             case actions.alignLeft:
             case actions.alignCenter:
             case actions.alignRight:
@@ -139,6 +138,13 @@ export default class RichToolbar extends Component {
             case actions.setHR:
             case actions.setIndent:
             case actions.setOutdent:
+            case actions.setTextColor:
+            case actions.setBackgroundColor:
+            case actions.undo:
+            case actions.redo:
+            case actions.insertLine:
+            case actions.quote:
+            case actions.removeFormat:
                 this.state.editor.showAndroidKeyboard();
                 this.state.editor._sendAction(action, 'result');
                 break;

@@ -109,12 +109,18 @@ function createHTML(options = {}) {
             heading4: { result: function() { return exec(formatBlock, '<h4>'); }},
             heading5: { result: function() { return exec(formatBlock, '<h5>'); }},
             heading6: { result: function() { return exec(formatBlock, '<h6>'); }},
-            paragraph: { result: function() { return exec(formatBlock, '<p>'); }},
-            quote: { result: function() { return exec(formatBlock, '<blockquote>'); }},
+            justifyCenter: { state: function() {  return queryCommandState('justifyCenter'); }, result: function() { return document.execCommand('justifyCenter'); }},
+            justifyLeft: { state: function() {  return queryCommandState('justifyLeft'); }, result: function() { return document.execCommand('justifyLeft'); }},
+            justifyRight: { state: function() {  return queryCommandState('justifyRight'); }, result: function() { return document.execCommand('justifyRight'); }},
+            justifyFull: { state: function() {  return queryCommandState('justifyFull'); }, result: function() { return document.execCommand('justifyFull'); }},
+            quote: { result: function() { document.execCommand('formatBlock', false, 'div'); return exec(formatBlock, '<blockquote>'); }},
             orderedList: { state: function() { return queryCommandState('insertOrderedList'); }, result: function() { return exec('insertOrderedList'); }},
             unorderedList: { state: function() { return queryCommandState('insertUnorderedList'); },result: function() { return exec('insertUnorderedList'); }},
             code: { result: function() { return exec(formatBlock, '<pre>'); }},
-            line: { result: function() { return exec('insertHorizontalRule'); }},
+            undo: { state: function() {  return queryCommandState('undo'); }, result: function() { return document.execCommand('undo'); }},
+            redo: { state: function() {  return queryCommandState('redo'); }, result: function() { return document.execCommand('redo'); }},
+            removeFormat: { result: function() { document.execCommand('formatBlock', false, 'div'); return document.execCommand('removeFormat'); }},
+            line: { result: function() { return document.execCommand('insertHorizontalRule');}},
             link: {
                 result: function(data) {
                     data = data || {};
